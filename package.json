@@ -4,7 +4,10 @@
   "description": "This project explores creating the appropriate resource group(s) and infrastructure on Microsoft Azure to deploy a Next.js application.",
   "main": "index.js",
   "scripts": {
-    "start": "cd apps/demo-01 && npm start"
+    "start": "cd apps/demo-01 && npm start",
+    "azure:build": "time sh ./scripts/azure-create-resource-group-and-infrastructure.sh",
+    "azure:deploy": "time sh ./scripts/azure-deploy-staging-deployment-slot-to-production.sh",
+    "azure:destroy": "time sh ./scripts/azure-destroy-resource-group-and-infrastructure.sh"
   },
   "repository": {
     "type": "git",
