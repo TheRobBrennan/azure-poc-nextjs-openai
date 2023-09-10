@@ -1,5 +1,7 @@
 #!/bin/bash
-# Azure Proof of Concept: Next.js and OpenAI
+# ------------------------------------------------------------------
+# Azure Proof of Concept: Next.js
+# ------------------------------------------------------------------
 # chmod +x scripts/azure-create-resource-group-and-infrastructure.sh
 # ./scripts/azure-create-resource-group-and-infrastructure.sh
 
@@ -7,16 +9,15 @@ echo "Running az cli $(az version | jq '."azure-cli"' )"
 echo "Running in subscription $( az account show | jq -r '.id') / $( az account show | jq -r '.name'), AAD Tenant $( az account show | jq -r '.tenantId')"
 
 # Variables
-projectname="azure-poc-nextjs-openai"
+projectname="azure-poc-nextjs"
 environment="dev" # You can change this as per your requirement
 region="westus"
-random_number=$RANDOM
 github_repo_url="https://github.com/TheRobBrennan/azure-poc-nextjs-openai"
+app="demo-01"
 
 # Derived names
-resource_group_name="rg-${environment}-${projectname}-${region}-${random_number}"
-keyvault_suffix="${random_number:0:4}" # Taking only the first 4 digits of the random number
-keyvault_name="${projectname:0:9}-${environment}-kv-${keyvault_suffix}" # Taking only the first 9 characters of the project name
+resource_group_name="${projectname}-${environment}-${region}"
+keyvault_name="${projectname}-${environment}-kv" # Taking only the first 9 characters of the project name
 
 # Create Resource Group
 az group create --name $resource_group_name --location $region
@@ -33,16 +34,16 @@ az keyvault create --name $keyvault_name \
 #                        --name $secret_name \
 #                        --value $secret_value
 
-
-app_service_plan_name="asp-${environment}-${projectname}-${app}-P1v2"
-web_app_name="${projectname}-${environment}-${app}-webapp-${random_number}"
+app_service_plan_sku="P1V2"
+app_service_plan_name="${projectname}-${environment}-asp-${app_service_plan_sku}-${app}"
+web_app_name="${projectname}-${environment}-webapp-${app}"
 
 # Create Linux App Service Plan with PremiumV2 tier (required for Deployment Slots)
 az appservice plan create --name $app_service_plan_name \
                           --resource-group $resource_group_name \
                           --location $region \
                           --is-linux \
-                          --sku P1V2
+                          --sku $app_service_plan_sku
 
 # Create Web App with Node.js runtime
 az webapp create --name $web_app_name \
