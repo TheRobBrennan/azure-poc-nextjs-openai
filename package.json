@@ -4,7 +4,7 @@
   "description": "This project explores creating the appropriate resource group(s) and infrastructure on Microsoft Azure to deploy a Next.js application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd apps/demo-01 && npm start"
   },
   "repository": {
     "type": "git",
