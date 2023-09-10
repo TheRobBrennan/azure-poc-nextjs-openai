@@ -28,7 +28,7 @@ az keyvault create --name $keyvault_name \
                    --location $region
 
 # OPTIONAL: Store secret(s) in Key Vault
-# secret_name="github-token"
+# secret_name="my-secret"
 # secret_value="my-secret-value"
 # az keyvault secret set --vault-name $keyvault_name \
 #                        --name $secret_name \
