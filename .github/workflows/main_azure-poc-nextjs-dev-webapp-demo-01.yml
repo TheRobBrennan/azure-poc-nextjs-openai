@@ -57,7 +57,7 @@ jobs:
         with:
           app-name: "azure-poc-nextjs"
           slot-name: "staging"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_FE60F64D5732447C9C5175E5F84CAB75 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2E8BB799E12E413288426EBF8EDAF1A5 }}
           package: next.zip
 
       - name: Delete zip file
