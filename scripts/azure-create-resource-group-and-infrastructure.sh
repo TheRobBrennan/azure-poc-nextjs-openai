@@ -62,6 +62,12 @@ az webapp update --name $web_app_name \
                   --resource-group $resource_group_name \
                   --https-only true
 
+# Create a staging Deployment Slot for the web app
+az webapp deployment slot create \
+  --name $web_app_name \
+  --resource-group $resource_group_name \
+  --slot staging
+
 echo "App Service Plan Name for $app: $app_service_plan_name"
 echo "Web App Name for $app: $web_app_name"
 
