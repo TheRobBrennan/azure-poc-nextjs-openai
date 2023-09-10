@@ -28,7 +28,7 @@ az keyvault create --name $keyvault_name \
                    --location $region
 
 # OPTIONAL: Store secret(s) in Key Vault
-# secret_name="github-token"
+# secret_name="my-secret"
 # secret_value="my-secret-value"
 # az keyvault secret set --vault-name $keyvault_name \
 #                        --name $secret_name \
@@ -62,11 +62,14 @@ az webapp update --name $web_app_name \
                   --resource-group $resource_group_name \
                   --https-only true
 
+# Create a staging Deployment Slot for the web app
+az webapp deployment slot create \
+  --name $web_app_name \
+  --resource-group $resource_group_name \
+  --slot staging
+
 echo "App Service Plan Name for $app: $app_service_plan_name"
 echo "Web App Name for $app: $web_app_name"
 
 echo "Resource Group Name: $resource_group_name"
 echo "Key Vault Name: $keyvault_name"
-
-# Clean-up
-# az group delete --name $resource_group_name --yes --no-wait
