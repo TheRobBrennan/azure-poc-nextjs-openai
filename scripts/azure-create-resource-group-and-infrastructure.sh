@@ -16,8 +16,8 @@ github_repo_url="https://github.com/TheRobBrennan/azure-poc-nextjs-openai"
 app="demo-01"
 
 # Derived names
-resource_group_name="${projectname}-${environment}-${region}"
-keyvault_name="${projectname}-${environment}-kv" # Taking only the first 9 characters of the project name
+resource_group_name="rg-${projectname}-${environment}-${region}"
+keyvault_name="kv-${projectname}-${environment}" # Taking only the first 9 characters of the project name
 
 # Create Resource Group
 az group create --name $resource_group_name --location $region
@@ -35,8 +35,8 @@ az keyvault create --name $keyvault_name \
 #                        --value $secret_value
 
 app_service_plan_sku="P1V2"
-app_service_plan_name="${projectname}-${environment}-asp-${app_service_plan_sku}-${app}"
-web_app_name="${projectname}-${environment}-webapp-${app}"
+app_service_plan_name="asp-${projectname}-${environment}-${app_service_plan_sku}-${app}"
+web_app_name="app-${projectname}-${environment}-webapp-${app}"
 
 # Create Linux App Service Plan with PremiumV2 tier (required for Deployment Slots)
 az appservice plan create --name $app_service_plan_name \
@@ -66,10 +66,10 @@ az webapp update --name $web_app_name \
 az webapp deployment slot create \
   --name $web_app_name \
   --resource-group $resource_group_name \
-  --slot staging
+  --slot next
 
+# Display the names of Azure resources we created
 echo "App Service Plan Name for $app: $app_service_plan_name"
 echo "Web App Name for $app: $web_app_name"
-
 echo "Resource Group Name: $resource_group_name"
 echo "Key Vault Name: $keyvault_name"
