@@ -6,7 +6,9 @@ name: Build and deploy Next.js app to Azure Web App (demo-01)
 on:
   push:
     branches:
-      - main
+      # - main
+      # no-op is a bogus name for a branch that should not exist in our repo
+      - no-op
   workflow_dispatch:
 
 jobs:
