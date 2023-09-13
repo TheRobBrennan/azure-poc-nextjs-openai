@@ -1,2 +1,2 @@
 #!/bin/bash
-az group delete --name azure-poc-nextjs-dev-westus --yes --no-wait
+az group delete --name rg-azure-poc-nextjs-dev-westus --yes --no-wait

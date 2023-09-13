@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - azure-poc-nextjs-dev-webapp-demo-01
+name: Build and deploy Next.js app to Azure Web App (demo-01)
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_on_azure:
-    name: Build on Azure # Display name with spaces
+    name: Build Next.js app on Azure
     runs-on: ubuntu-latest
 
     steps:
@@ -40,12 +40,16 @@ jobs:
           path: next.zip
 
   deploy_to_azure:
-    name: Deploy to Azure # Display name with spaces
+    name: Deploy Next.js application to Azure
     runs-on: ubuntu-latest
     needs: build_on_azure
     environment:
-      name: "staging"
+      # You can see this if you go to the GitHub repo and look under "Deployments" on the right side
+      name: "Staging"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    env:
+      # TODO: Replace this with the appropriate publish profile created via the Azure portal
+      PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D519944001DF4390BB146C0934DAACA4 }}
 
     steps:
       - name: Download artifact from build job
@@ -58,8 +62,8 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: "azure-poc-nextjs-dev-webapp-demo-01"
-          slot-name: "staging"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0E1C901205524750AD406E513C953F09 }}
+          slot-name: "next"
+          publish-profile: ${{ env.PUBLISH_PROFILE }}
           package: next.zip
 
       - name: Delete zip file
