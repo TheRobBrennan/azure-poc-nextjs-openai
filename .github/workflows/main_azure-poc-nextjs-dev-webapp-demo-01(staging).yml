@@ -10,7 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build_on_azure:
+    name: Build on Azure # Display name with spaces
     runs-on: ubuntu-latest
 
     steps:
@@ -38,9 +39,10 @@ jobs:
           name: node-app
           path: next.zip
 
-  deploy:
+  deploy_to_azure:
+    name: Deploy to Azure # Display name with spaces
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_on_azure
     environment:
       name: "staging"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
