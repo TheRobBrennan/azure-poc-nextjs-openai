@@ -49,7 +49,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     env:
       # TODO: Replace this with the appropriate publish profile created via the Azure portal
-      PUBLISH_PROFILE: ${{ secrets.AzureAppService_PublishProfile_cda1d93890c6497daf9f49b3b91ff161 }}
+      PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BA8A2E6996144E599DAB0D6D8AA1CE41 }}
 
     steps:
       - name: Download artifact from build job
