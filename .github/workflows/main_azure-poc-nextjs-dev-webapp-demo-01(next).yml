@@ -44,7 +44,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_on_azure
     environment:
-      name: "staging"
+      # You can see this if you go to the GitHub repo and look under "Deployments" on the right side
+      name: "Staging"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     env:
       # TODO: Replace this with the appropriate publish profile created via the Azure portal
