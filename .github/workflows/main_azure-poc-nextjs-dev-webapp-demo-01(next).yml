@@ -58,7 +58,7 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: "azure-poc-nextjs-dev-webapp-demo-01"
-          slot-name: "staging"
+          slot-name: "next"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0E1C901205524750AD406E513C953F09 }}
           package: next.zip
 
