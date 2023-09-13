@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - demo-01
+name: Build and deploy Next.js demo-01 app to Azure Web App
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build_on_azure:
-    name: Build on Azure
+    name: Build Next.js app on Azure
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +40,7 @@ jobs:
           path: next.zip
 
   deploy_to_azure:
-    name: Deploy to Azure
+    name: Deploy Next.js application to Azure
     runs-on: ubuntu-latest
     needs: build_on_azure
     environment:
