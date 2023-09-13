@@ -1,14 +1,13 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Next.js app to Azure Web App (demo-01)
+name: "DEMO-01: Build and deploy Next.js app to Azure Web App"
 
 on:
   push:
     branches:
-      # - main
-      # no-op is a bogus name for a branch that should not exist in our repo
-      - no-op
+      # TODO: Replace with the main branch
+      - template-main
   workflow_dispatch:
 
 jobs:
@@ -41,12 +40,11 @@ jobs:
           name: node-app
           path: next.zip
 
-  deploy_to_azure:
-    name: Deploy Next.js application to Azure
+  deploy_to_azure_web_app:
+    name: Deploy Next.js app to Azure
     runs-on: ubuntu-latest
     needs: build_on_azure
     environment:
-      # You can see this if you go to the GitHub repo and look under "Deployments" on the right side
       name: "next"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
@@ -60,10 +58,10 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: "azure-poc-nextjs-dev-webapp-demo-01"
+          app-name: "app-azure-poc-nextjs-dev-webapp-demo-01"
           slot-name: "next"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5A7B96ED0BCB4A1EB1ED8CDE8EE33F85 }}
-          package: next.zip
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_295EFCF54C0D49469EBAEAC63A6ABF93 }}
+          package: .
 
       - name: Delete zip file
         run: rm next.zip

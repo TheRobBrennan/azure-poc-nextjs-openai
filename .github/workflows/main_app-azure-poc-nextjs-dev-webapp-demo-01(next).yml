@@ -39,7 +39,7 @@ jobs:
           name: node-app
           path: next.zip
 
-  deploy:
+  deploy_to_azure_web_app:
     name: Deploy Next.js app to Azure
     runs-on: ubuntu-latest
     needs: build_on_azure
