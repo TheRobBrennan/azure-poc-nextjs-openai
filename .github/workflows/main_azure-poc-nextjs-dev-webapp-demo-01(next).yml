@@ -46,6 +46,9 @@ jobs:
     environment:
       name: "staging"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    env:
+      # TODO: Replace this with the appropriate publish profile created via the Azure portal
+      PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D519944001DF4390BB146C0934DAACA4 }}
 
     steps:
       - name: Download artifact from build job
@@ -59,7 +62,7 @@ jobs:
         with:
           app-name: "azure-poc-nextjs-dev-webapp-demo-01"
           slot-name: "next"
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D519944001DF4390BB146C0934DAACA4 }}
+          publish-profile: ${{ env.PUBLISH_PROFILE }}
           package: next.zip
 
       - name: Delete zip file
